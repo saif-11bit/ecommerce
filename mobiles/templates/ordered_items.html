@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Main layout-->
+  
+    <div class="container">
+
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+          {% for ordered in ordered_items %}
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card image-->
+              <div class="view overlay">
+                <img src="{{ordered.item.image.url}}" class="card-img-top"
+                  alt="">
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--Card image-->
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+
+                <span class="grey-text">
+                  <h5>{{ordered.item.get_category_display}}</h5>
+                </span>
+                <h5>
+                  <strong>
+                    <span class="dark-grey-text">
+                    {{ordered.item.title}}
+                      </span>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>$
+                  {% if ordered.item.discount_price %}
+                  {{ordered.item.discount_price}}
+                  {% else %}
+                  {{ordered.item.price}}
+                  {% endif %}
+                </strong>
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
+          <!--Grid column-->
+
+          {% endfor %}
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Products v.3-->
+
+    </div>
+
+
+{% endblock %}
